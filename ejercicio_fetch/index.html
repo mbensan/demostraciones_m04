@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    main {
+      width: 50rem;
+      min-height: 50rem;
+      margin: 2rem auto;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="bg-pan-top">
+    <h2>hola</h2>
+    <p class="primero">acá va la info de la página</p>
+    <p>El MAIN representa el área visible de la página</p>
+    <ul>
+      <li>Combi</li>
+      <li>Roll Royce</li>
+      <li>Ñuñuki</li>
+    </ul>
+    <h3>Tipos de solicitudes HTTP</h3>
+    <ol>
+      <li>GET (para traer un recurso)</li>
+      <li>POST (para crear un nuevo recurso)</li>
+      <li>PUT (para modificar un recurso ya existente</li>
+      <li>DELETE (para eliminar un recurso)</li>
+    </ol>
+  </main>
+  <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+  <script src="clave.js"></script>
+  <script>
+    // etiquetas HTML
+    const h2 = document.querySelector('h2')
+    const primer_p = document.querySelector('.primero')
+    primer_p.innerHTML = 'Acá va un <a href="#">enlace</a>'
+
+    const muchas_lis = document.querySelectorAll('li')
+    muchas_lis[0].textContent = 'Kawazaki'
+    muchas_lis[1].textContent = 'Ducati'
+    muchas_lis[2].textContent = 'Yamaha'
+
+    // CALLBACKS
+    navigator.geolocation.getCurrentPosition(function (datos) {
+      const latitude = datos.coords.latitude
+      const longitude = datos.coords.longitude
+      /*
+      $.getJSON(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid7568372252e997612130ddlkjkljlk70a1924`,
+        function (clima) {
+          console.log(clima)
+          h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
+        }
+      )
+      */
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${clave}`)
+      .then(datos => datos.json())
+      .then(clima => {
+        console.log(clima)
+        h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
+      })
+      .catch(error => console.log(error))
+
+    })
+    console.log('Datos recibidos')
+  </script>
+</body>
+</html>
