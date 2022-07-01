@@ -65,29 +65,52 @@
     muchas_lis[1].textContent = 'Ducati'
     muchas_lis[2].textContent = 'Yamaha'
 
-    // CALLBACKS
-    navigator.geolocation.getCurrentPosition(function (datos) {
-      const latitude = datos.coords.latitude
-      const longitude = datos.coords.longitude
-      /*
-      $.getJSON(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid7568372252e997612130ddlkjkljlk70a1924`,
-        function (clima) {
-          console.log(clima)
-          h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
-        }
-      )
-      */
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${clave}`)
-      .then(datos => datos.json())
-      .then(clima => {
-        console.log(clima)
-        h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
-      })
-      .catch(error => console.log(error))
+    // PRIMERO CREAMOS UNA FUNCION QUE DEVUELVA UNA PROMESA
+    function get_ubicacion () {
+      return new Promise(function (todo_ok, algun_error) {
+        // acá adentro escribo el código de la promesa
+        navigator.geolocation.getCurrentPosition(function(datos) {
+          todo_ok(datos)
+        });
+        
+      });
+    }
+    
 
+    // USAMOS LAS PRoMESAS
+    get_ubicacion()
+    .then(datos => {
+      const latitude = datos.coords.latitude;
+      const longitude = datos.coords.longitude;
+      return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${clave}`)
     })
-    console.log('Datos recibidos')
+    .then(datos => datos.json())
+    .then(clima => {
+      console.log(clima)
+      h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
+    })
+    .catch(error => console.log(error))  
+
+
+
+
+
+
+    function getUsers (names) {
+      const usuarios = []
+
+      for (let name of names) {
+        fetch(`https://api.github.com/users/${name}`)
+        .then(datos => datos.json())
+        .then(usuario => usuarios.push(usuario))
+      }
+      
+      console.log('usuarios de github:', usuarios);
+      return usuarios
+    }
+
+    // descomenta la proxima linea para llamar a usuarios de Github
+    // getUsers(['xNesMilo', 'IsabelAntolin', 'mbensan', 'axel-ferreira']) 
   </script>
 </body>
 </html>
