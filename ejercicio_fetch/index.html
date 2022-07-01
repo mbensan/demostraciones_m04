@@ -67,10 +67,10 @@
 
     // PRIMERO CREAMOS UNA FUNCION QUE DEVUELVA UNA PROMESA
     function get_ubicacion () {
-      return new Promise(function (todo_ok, algun_error) {
+      return new Promise(function (success, failure) {
         // acá adentro escribo el código de la promesa
         navigator.geolocation.getCurrentPosition(function(datos) {
-          todo_ok(datos)
+          success(datos)
         });
         
       });
@@ -78,6 +78,7 @@
     
 
     // USAMOS LAS PRoMESAS
+    /*
     get_ubicacion()
     .then(datos => {
       const latitude = datos.coords.latitude;
@@ -87,11 +88,30 @@
     .then(datos => datos.json())
     .then(clima => {
       console.log(clima)
-      h2.textContent = `La temperatura en ${clima.name} es de ${clima.main.temp - 273}°C`
+      const temperatura = (clima.main.temp - 273).toFixed(2)
+      h2.textContent = `La temperatura en ${clima.name} es de ${temperatura}°C`
     })
     .catch(error => console.log(error))  
+    */
 
+    // USAMOS PROMESAS CON FUNCIONES ASYNCRONAS e IIFE
+    (async function () {
+      // 1. pedimos la ubicación
+      const datos = await get_ubicacion()
 
+      const latitude = datos.coords.latitude;
+      const longitude = datos.coords.longitude;
+
+      // 2. Pedimos el pronóstico del tiempo
+      const datos2 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${clave}`)
+      
+      // 3. Desempaquetamos el pronostico
+      const clima = await datos2.json()
+
+      // 4. Escribimos en el DOM el pronostico para hoy
+      const temperatura = (clima.main.temp - 273).toFixed(2)
+      h2.textContent = `La temperatura en ${clima.name} es de ${temperatura}°C`
+    })();
 
 
 
