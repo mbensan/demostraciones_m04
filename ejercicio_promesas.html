@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Ejercicio de Promesas</h2>
+  <script>
+    function esperar3 () {
+      return new Promise(function (TODO_OK, ALGUN_ERROR) {
+        setTimeout(function () {
+          console.log('Información Enviada');
+        }, 3000)
+      })
+    }
+
+    async function get_albumes () {
+      const url = 'https://jsonplaceholder.typicode.com/photos'
+      try {
+        // intentamos ejecutar las siguientes instrucciones
+        let albumes = await fetch(url)
+        albumes = await albumes.json()
+
+        albumes = albumes.slice(0, 20)
+        albumes.map(  album => console.log(album.title)  )
+
+        await esperar3()
+      }
+
+      catch (error) {
+        // en caso de error
+        console.log(error);
+      }
+    }
+
+    get_albumes()
+  </script>
+</body>
+</html>
