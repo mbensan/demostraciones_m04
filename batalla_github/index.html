@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-4">Bienvenid@s a la Batalla de Github!</h1>
+      <div class="row mt-5">
+        <div class="col-6">
+          <div class="card card-user-1">
+            <div class="card-body">
+              <h5 class="card-title">Jugador 1</h5>
+              <div class="row">
+                <div class="col-9">
+                  <input type="text" class="form-control" id="username1">
+                </div>
+                <div class="col-3">
+                  <button id="btn1" class="btn btn-primary">GO!</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">Public Repos <span class="public_repos"></span></li>
+                <li class="list-group-item">Followers <span class="followers"></span></li>
+                <li class="list-group-item">Following <span class="following"></span></li>
+                <li class="list-group-item">Gists <span class="public_gists"></span></li>
+                <li class="list-group-item"><b>Total: <span class="total"></span></b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card card-user-2">
+            <div class="card-body">
+              <h5 class="card-title">Jugador 2</h5>
+              <div class="row">
+                <div class="col-9">
+                  <input type="text" class="form-control" id="username2">
+                </div>
+                <div class="col-3">
+                  <button id="btn2" class="btn btn-primary">GO!</button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">Public Repos <span class="public_repos"></span></li>
+                <li class="list-group-item">Followers <span class="followers"></span></li>
+                <li class="list-group-item">Following <span class="following"></span></li>
+                <li class="list-group-item">Gists <span class="public_gists"></span></li>
+                <li class="list-group-item"><b>Total: <span class="total"></span></b></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center mt-5">
+        <button class="btn btn-success">BATTLE!</button>
+      </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
