@@ -13,6 +13,8 @@ class Usuario {
     this.public_gists = document.querySelector(`.${card_name} .public_gists`)
     this.total = document.querySelector(`.${card_name} .total`)
 
+    this.avatar = document.querySelector(`.${card_name} img`)
+
     this.btn_buscar.addEventListener('click',  this.get_score)
   }
 
@@ -25,6 +27,9 @@ class Usuario {
 
     const datos = await fetch(`https://api.github.com/users/${username}`)
     const user = await datos.json()
+    console.log(user);
+    this.avatar.src = user.avatar_url;
+    this.avatar.style.display = 'block'
 
     this.public_repos.textContent = user.public_repos
     this.public_gists.textContent = user.public_gists
