@@ -15,7 +15,16 @@ class Usuario {
 
     this.avatar = document.querySelector(`.${card_name} img`)
 
+    // guardo el card_name como propiedad del objeto
+    this.card_name = card_name
+
+    // eventos
     this.btn_buscar.addEventListener('click',  this.get_score)
+
+    // carga inicial
+    if (localStorage.getItem(card_name)) {
+      this.input.value = localStorage.getItem(card_name)
+    }
   }
 
   get_score = async () => {
@@ -24,19 +33,24 @@ class Usuario {
     if (username == '') {
       return;
     }
-
+    // consulto datos del usuario a la API
     const datos = await fetch(`https://api.github.com/users/${username}`)
     const user = await datos.json()
-    console.log(user);
+
+    // cargo avatar del usuario
     this.avatar.src = user.avatar_url;
     this.avatar.style.display = 'block'
 
+    // Cargo puntajes del usuario
     this.public_repos.textContent = user.public_repos
     this.public_gists.textContent = user.public_gists
     this.followers.textContent = user.followers
     this.following.textContent = user.following
 
     this.total.textContent = user.public_gists + user.public_repos + user.followers + user.following
+    
+    // guardo el usuario buscado en localStorage
+    localStorage.setItem(this.card_name, username)
   }
 
   put_html (card_name) {
