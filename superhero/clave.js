@@ -1,0 +1,1 @@
+export const clave = '10160020127862769'

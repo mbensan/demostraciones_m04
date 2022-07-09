@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SuperHéroes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+          <img src="imgs/sh2.jpg" id="img-navbar" alt="">
+          <a class="navbar-brand" href="#">SuperHero</a>
+        </div>
+      </nav>
+      <img src="imgs/sh1.jpg" id="img-big" alt="">
+      <h1>Encuentra tu SuperHero</h1>
+      <form id="form-hero">
+        <div class="mb-3">
+          <label class="form-label">Ingresa el número del SuperHero a buscar</label>
+          <input type="number" min="1" max="700" class="form-control" id="id-hero" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <section class="cuadrado">
+        <div class="row">
+          <div class="col-3">
+            <img src="imgs/sh1.jpg" class="d-block w-100" alt="">
+          </div>
+          <div class="col-4">
+            <h4 class="text-center">SuperHero Encontrado</h4>
+            <h5>Nombre: <span id="nombre"></span></h5>
+            <p>Conexiones: <span id="conexiones"></span></p>
+            <p>Publicado por: <span id="publicado"></span></p>
+            <p>Ocupación: <span id="ocupacion"></span></p>
+            <p>Primera Aparición: <span id="aparicion"></span></p>
+            <p>Altura: <span id="altura"></span></p>
+            <p>Peso: <span id="peso"></span></p>
+            <p>Alianzas: <span id="alianzas"></span></p>
+          </div>
+          <div class="col-5">
+            <h2>Estadísticas de Poder para <span id="nombre-2">sdlsal</span></h2>
+            <div id="chartContainer"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
